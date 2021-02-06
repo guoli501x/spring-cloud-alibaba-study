@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: service-consumer
+#  profiles:
+#    active: dev
   cloud:
     nacos:
       discovery:
