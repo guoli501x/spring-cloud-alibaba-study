@@ -1,5 +1,6 @@
 package cn.guoli.controller;
 
+import cn.guoli.service.ConsumerService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,9 @@ public class ConsumerController {
     @Resource
     private RestTemplate restTemplate;
 
+    @Resource
+    private ConsumerService consumerService;
+
     @GetMapping(value = "/echo-rest/{str}")
     public String rest(@PathVariable String str) {
         return restTemplate.getForObject("http://service-provider/echo/" + str, String.class);
@@ -32,5 +36,15 @@ public class ConsumerController {
     @GetMapping("/getConfigInfo")
     public String getConfigInfo() {
         return configInfo;
+    }
+
+    @GetMapping(value = "/sentinel/test")
+    public String sentinelTest() {
+        return restTemplate.getForObject("http://service-provider/sentinel/test", String.class);
+    }
+
+    @GetMapping("/sentinel/test/feign")
+    public String sentinelTestFeign() {
+        return consumerService.sentinelTest();
     }
 }

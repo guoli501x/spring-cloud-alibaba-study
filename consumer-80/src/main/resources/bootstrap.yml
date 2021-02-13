@@ -4,4 +4,4 @@ spring:
       config:
         server-addr: 192.168.10.128:8848
         file-extension: yaml  # 指定配置文件格式
-        prefix: nacos-config
+#        prefix: nacos-config  # 当配置文件前缀不是服务名，需要特别指定

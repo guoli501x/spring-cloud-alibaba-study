@@ -12,3 +12,13 @@ spring:
       transport:
         port: 8719
         dashboard: 192.168.10.128:8080
+      eager: false
+      datasource:
+        dsl:
+          nacos:
+            server-addr: 192.168.10.128:8848
+            dataId: ${spring.application.name}
+            groupId: DEFAULT_GROUP
+            data_type: json
+            rule_type: flow
+
