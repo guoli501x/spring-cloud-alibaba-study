@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.10.128:8848
+        file-extension: yaml  # 指定配置文件格式
+#        prefix:

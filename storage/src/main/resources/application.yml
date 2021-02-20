@@ -1,0 +1,53 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: service-storage
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.10.128:3306/storage
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.10.128:8848
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 192.168.10.128:8080
+      eager: false
+
+seata:
+  application-id: ${spring.application.name}
+  tx-service-group: my_test_tx_group  # 与nacos-config.txt中service.vgroupMapping后缀相同
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 192.168.10.128:8848
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+  config:
+    type: nacos
+    nacos:
+      server-addr: 192.168.10.128:8848
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+
+# 开启sentinel对openfeign的支持
+feign:
+  sentinel:
+    enabled: true
+  # 设置feign超时时间
+  client:
+    config:
+      default:
+        connect-timeout: 5000
+        read-timeout: 5000
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

@@ -7,6 +7,9 @@
         <module>provider-8001</module>
         <module>provider-8002</module>
         <module>consumer-80</module>
+        <module>order</module>
+        <module>storage</module>
+        <module>account</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

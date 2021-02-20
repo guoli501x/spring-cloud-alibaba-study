@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.guoli.mapper.OrderMapper">
+    <resultMap id="OrderMap" type="cn.guoli.domain.Order">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="commodity_code" property="commodityCode" />
+        <result column="count" property="count" />
+        <result column="money" property="money" />
+    </resultMap>
+    <insert id="insert">
+        insert into order.order_tbl(user_id, commodity_code, count, money)
+        value (#{userId}, #{commodityCode}, #{count}, #{money})
+    </insert>
+
+    <select id="query" resultMap="OrderMap">
+        select * from order.order_tbl;
+    </select>
+</mapper>
